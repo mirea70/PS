@@ -1,6 +1,7 @@
 package com.exercise.ps.Programmers;
 
 import java.util.Arrays;
+import java.util.HashSet;
 
 public class hash_3 {
     public static void main(String[] args) {
@@ -24,4 +25,23 @@ class hash_3_Solution {
         }
         return answer;
     }
+
+    public boolean solution2(String[] phone_book) {
+        // 해시셋에 각 번호를 넣는다
+        // 각 번호에 대해, 번호를 순회하며, 0번째 부터 잘라 한자리씩 늘려 임시 String을 만들고 그 자체가 값인지 검증한다.
+        // 즉, 한 단어만 꺼내서, 그단어에 포함된 것들로 시작하는 것들이 있는지 살펴보는 것이다.
+        // 즉 n번만 순회하게되어 테스트 통과가 가능
+        HashSet<String> set = new HashSet<>();
+        for(String str : phone_book) {
+            set.add(str);
+        }
+
+        for(String s : set) {
+            for (int i = 1; i < s.length(); i++) {
+                if(set.contains(s.substring(0, i))) return false;
+            }
+        }
+        return true;
+    }
 }
+
