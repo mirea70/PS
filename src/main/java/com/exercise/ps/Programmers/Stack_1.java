@@ -16,7 +16,7 @@ class Stack_1_Solution {
         Deque<Integer> stack = new LinkedList<>();
 
         // arr을 순회하며 디큐에 넣는다.
-        // 넣을 때 디큐의 맨뒤와 같으면 넣지 않는다.
+        // 넣을 때 디큐의 맨뒤와 같으면 넣지 않는다. peek 0번째 인덱스  1 3 2 1
         for(int i : arr) {
             if(stack.isEmpty() || (!stack.isEmpty() && stack.peekLast() != i) ) stack.add(i);
         }
