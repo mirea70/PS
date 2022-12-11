@@ -1,4 +1,4 @@
-package com.exercise.ps.Programmers;
+package com.exercise.ps.Programmers.Dfs_Bfs;
 
 public class Dfs_Bfs_2_other {
     public static void main(String[] args) {

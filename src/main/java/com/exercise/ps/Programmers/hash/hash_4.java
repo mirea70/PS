@@ -1,4 +1,4 @@
-package com.exercise.ps.Programmers;
+package com.exercise.ps.Programmers.hash;
 
 import java.util.ArrayList;
 import java.util.HashMap;

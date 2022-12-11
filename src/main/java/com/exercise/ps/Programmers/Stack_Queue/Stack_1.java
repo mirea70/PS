@@ -1,4 +1,4 @@
-package com.exercise.ps.Programmers;
+package com.exercise.ps.Programmers.Stack_Queue;
 
 import java.util.*;
 
