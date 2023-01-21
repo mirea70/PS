@@ -19,9 +19,10 @@ class greedy_5_Solution {
         Arrays.sort(costs, new Comparator<int[]>(){
             @Override
             public int compare(int[] a1, int[] a2) {
-                return a1[2] > a2[2] ? 1 : -1;
+                return a1[2] - a2[2];
             }
         });
+
         // costs를 순회
         for(int i=0; i<costs.length;i++){
             // 제시된 노드끼리 연결 처리
@@ -32,32 +33,51 @@ class greedy_5_Solution {
             if(link_cnt == n * (n - 1) / 2) break;
         }
         return pay;
-        // return link_cnt;
     }
     // 연결 처리 함수
     private int linking(int node1, int node2) {
         // 두 노드가 이미 연결되있는지 확인
-        if(linked[node1][node2] == 1) return -1;
+        if(linked[node1][node2] == 1 || linked[node2][node1] == 1) return -1;
         // node1과 node2의 간접연결
         // linked[node1]을 순회
         for(int j=0; j< linked[node1].length; j++){
-            // node1과 연결되있는 노드와 node2가 연결되있지 않다면
-            if(linked[node1][j] ==1 && linked[j][node2] != 1) {
-                // 연결 처리
-                linked[j][node2] = 1;
-                linked[node2][j] = 1;
-                link_cnt++;
+            // node1과 연결되있는 노드와
+            if(linked[node1][j] ==1) {
+                // node2가 연결되있지 않다면 연결 처리
+                if(linked[j][node2] != 1){
+                    linked[j][node2] = 1;
+                    linked[node2][j] = 1;
+                    link_cnt++;
+                }
+                // node2을 순회하며 node2과 연결된 노드도 j와의 연결 체크 후 연결처리
+                for(int l=0; l< linked[node2].length; l++) {
+                    if(linked[node1][l] == 1 && linked[j][l] != 1) {
+                        linked[j][l] = 1;
+                        linked[l][j] = 1;
+                        link_cnt++;
+                    }
+                }
             }
             // 순회 끝
         }
         // linked[node2]을 순회
         for(int k=0; k< linked[node2].length; k++){
-            // node2과 연결되있는 노드와 node1가 연결되있지 않다면
-            if(linked[node2][k] ==1 && linked[k][node1] != 1) {
-                // 연결 처리
-                linked[k][node1] = 1;
-                linked[node1][k] = 1;
-                link_cnt++;
+            // node2과 연결되있는 노드와
+            if(linked[node2][k] ==1) {
+                // node1가 연결되있지 않다면 연결 처리
+                if(linked[k][node1] != 1){
+                    linked[k][node1] = 1;
+                    linked[node1][k] = 1;
+                    link_cnt++;
+                }
+                // node1을 순회하며 node1과 연결된 노드도 k와의 연결 체크 후 연결처리
+                for(int l=0; l< linked[node1].length; l++) {
+                    if(linked[node1][l] == 1 && linked[k][l] != 1) {
+                        linked[k][l] = 1;
+                        linked[l][k] = 1;
+                        link_cnt++;
+                    }
+                }
             }
             // 순회 끝
         }
