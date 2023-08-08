@@ -11,8 +11,8 @@ import java.util.StringTokenizer;
 public class Q14888 {
 
 	static int[] nums;
-	static int max = 0;
-	static int min = Integer.MAX_VALUE;
+	static long max = Long.MIN_VALUE;
+	static long min = Long.MAX_VALUE;
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -58,7 +58,7 @@ public class Q14888 {
 
 		if(depth == r) {
 			// 나열이 끝날 때, 해당 수를 계산한다.
-			int result = nums[0];
+			long result = nums[0];
 			for(int i = 0; i<output.length; i++) {
 				String tool = output[i];
 				switch (tool) {
