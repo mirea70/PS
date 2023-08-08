@@ -1,61 +1,55 @@
 package com.exercise.ps.Baekjoon.bruteforce;
 
-import java.util.HashMap;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.StringTokenizer;
 
 public class Q14501 {
 
-    public static void main(String[] args) {
-        Solution_Qu14501 ss = new Solution_Qu14501();
-        Scanner sc = new Scanner(System.in);
+    static int max = 0;
 
-        int N = sc.nextInt();
-        sc.nextLine();
-        HashMap<Integer, int[]> consults = new HashMap<>();
-        for (int i = 1; i <= N; i++) {
-//			String aa = sc.nextLine();
-            String[] strArr = sc.nextLine().split(" ");
-            int[] intArr = {Integer.parseInt(strArr[0]), Integer.parseInt(strArr[1])};
-            consults.put(i, intArr);
+    static int N = 0;
+
+    public static void main(String[] args) throws IOException {
+        // 입력
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        N = Integer.parseInt(br.readLine());
+        StringTokenizer st;
+        List<int[]> consults = new ArrayList<>();
+        for(int i=0; i<N; i++) {
+            st = new StringTokenizer(br.readLine());
+            int[] consult = {Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())};
+            consults.add(consult);
         }
-        int maxRevenue = ss.maxRevenue(consults, N);
-        System.out.println(maxRevenue);
+
+        // 상담 일자 순회 : 각 상담일을 첫 시작일로 하는 경우의 수 방문
+        // N일 중 N일을 방문
+        // 해당 조합은 총 일수 >= N일 때 탈출하며, 최대 이익 갱신
+        updateMax(consults, new boolean[N], 0, 0);
+        // 최대 이익 출력
+        System.out.println(max);
     }
 
-}
-
-class Solution_Qu14501 {
-
-    int maxRevenue = 0;
-    int N = 0;
-
-    public int maxRevenue(HashMap<Integer, int[]> consults, int N) {
-        this.N = N;
-        // 가능한 조합을 모두 방문 및 이익 최대값 갱신
-        recursive(1, new HashMap<>(), consults);
-        // maxRevenue 리턴
-        return maxRevenue;
-    }
-
-    private void recursive(int now, HashMap<Integer, int[]> com, HashMap<Integer, int[]> others) {
-
-        // 현재 조합의 이익 합으로 최댓값 갱신한다.
-        if (now >= N) {
-            int sum = com.values().stream().map(consult -> consult[1]).reduce(0, Integer::sum);
-            maxRevenue = Math.max(maxRevenue, sum);
+    private static void updateMax(List<int[]> consults, boolean[] visit, int now, int sum) {
+        if(N <= now) {
+            max = Math.max(max, sum);
             return;
         }
-        // 현재 시간, 현재 조합, 나머지 상담 일자로 재귀를 돈다.
-        if (others.size() > 0) {
-            int[] consult = others.get(now);
 
-            if (consult != null && now + consult[0] <= N) {
-                com.put(now, consult);
-                others.remove(now);
-                recursive(now + consult[0], com, others);
+        for(int i = now; i<consults.size(); i++) {
+            if(!visit[i]) {
+                visit[i] = true;
+                if(N  >= i + consults.get(i)[0]) {
+                    updateMax(consults, visit, i + consults.get(i)[0], sum + consults.get(i)[1]);
+                }
+                else {
+                    updateMax(consults, visit, i + consults.get(i)[0], sum);
+                }
+                visit[i] = false;
             }
         }
-
-        recursive(now + 1, com, others);
     }
 }
