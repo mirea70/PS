@@ -62,12 +62,12 @@ public class Q21610 {
         // 구름 이동
         for(int[] cloud : clouds) {
 
-            int ny = cloud[0] + dy1[dir] * s;
-            int nx = cloud[1] + dx1[dir] * s;
-            if(ny > N) ny = ny % N;
-            else if(ny < 1) ny = N + (ny % N);
-            if(nx > N) nx = nx % N;
-            else if(nx < 1) nx = N + (nx % N);
+            int ny = (N + cloud[0] + dy1[dir] * (s % N)) % N;
+            int nx = (N + cloud[1] + dx1[dir] * (s % N)) % N;
+//            if(ny > N) ny = ny % N;
+//            else if(ny < 1) ny = N + (ny % N);
+//            if(nx > N) nx = nx % N;
+//            else if(nx < 1) nx = N + (nx % N);
 
             is_cloud[cloud[0]][cloud[1]] -= 1;
             is_cloud[ny][nx] += 1;
