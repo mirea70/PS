@@ -28,7 +28,7 @@ public class SWEA_1249 {
                 int[] input = Arrays.stream(br.readLine().split(""))
                         .mapToInt(Integer::parseInt).toArray();
                 map[i] = input;
-                totalMap[i] = input;
+                totalMap[i] = Arrays.copyOf(input, n);
             }
             // 탐색
             // 최소 비용 출력
@@ -45,6 +45,8 @@ public class SWEA_1249 {
         while(!q.isEmpty()) {
             // 큐에서 현 위치 뽑기
             int[] now = q.poll();
+            // 현위치가 n-1,n-1이면 패스
+            if(now[0] == n-1 && now[1] == n-1) continue;
             // 상하좌우 이동 시도
             for(int i=0; i<4; i++) {
                 int ny = now[0] + dy[i];
@@ -52,11 +54,9 @@ public class SWEA_1249 {
                 // 다음 이동지가 벽 넘어가면 패스
                 if(ny >= n || ny < 0 || nx >= n || nx < 0) continue;
                 // 방문하지 않은 경우
-                if(!check[ny][nx])
-                    // 누적지도 상 다음 값 갱신
-                {
+                if(!check[ny][nx]) {
                     totalMap[ny][nx] = totalMap[now[0]][now[1]] + map[ny][nx];
-                    check[now[0]][now[1]] = true;
+                    check[ny][nx] = true;
                     q.add(new int[]{ny, nx});
                 }
 //                     이미 방문한 경우 : 누적 지도상 현재 값 + 다음 이동지값 < 누적 지도상 다음 이동지 값
