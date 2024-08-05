@@ -1,4 +1,4 @@
-package com.exercise.ps.leetcode.window;
+package main.java.com.exercise.ps.leetcode.window;
 
 import java.util.HashSet;
 import java.util.Set;

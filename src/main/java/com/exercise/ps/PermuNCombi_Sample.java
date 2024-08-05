@@ -1,4 +1,4 @@
-package com.exercise.ps;
+package main.java.com.exercise.ps;
 
 import java.util.Arrays;
 

@@ -1,4 +1,4 @@
-package com.exercise.ps.Programmers.kakao;
+package main.java.com.exercise.ps.Programmers.kakao;
 
 import java.util.*;
 

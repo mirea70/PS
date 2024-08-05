@@ -1,4 +1,4 @@
-package com.exercise.ps.Programmers.greedy;
+package main.java.com.exercise.ps.Programmers.greedy;
 
 public class greedy_2 {
     public static void main(String[] args) {

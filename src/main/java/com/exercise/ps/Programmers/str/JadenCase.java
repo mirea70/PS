@@ -1,4 +1,4 @@
-package com.exercise.ps.Programmers.str;
+package main.java.com.exercise.ps.Programmers.str;
 
 public class JadenCase {
     public String solution(String s) {

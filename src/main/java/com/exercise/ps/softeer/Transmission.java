@@ -1,4 +1,4 @@
-package com.exercise.ps.softeer;
+package main.java.com.exercise.ps.softeer;
 
 import java.io.*;
 import java.util.*;

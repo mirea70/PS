@@ -1,4 +1,4 @@
-package com.exercise.ps.swea;
+package main.java.com.exercise.ps.swea;
 
 import java.util.Scanner;
 

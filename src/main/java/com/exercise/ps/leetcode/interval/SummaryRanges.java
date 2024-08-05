@@ -1,4 +1,4 @@
-package com.exercise.ps.leetcode.interval;
+package main.java.com.exercise.ps.leetcode.interval;
 
 import java.util.ArrayList;
 import java.util.List;

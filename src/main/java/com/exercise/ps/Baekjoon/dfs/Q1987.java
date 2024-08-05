@@ -1,4 +1,4 @@
-package com.exercise.ps.Baekjoon.dfs;
+package main.java.com.exercise.ps.Baekjoon.dfs;
 
 import java.io.BufferedReader;
 import java.io.IOException;

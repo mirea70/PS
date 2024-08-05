@@ -1,4 +1,4 @@
-package com.exercise.ps.Programmers.greedy;
+package main.java.com.exercise.ps.Programmers.greedy;
 
 import java.util.*;
 

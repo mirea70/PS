@@ -1,4 +1,4 @@
-package com.exercise.ps.Programmers.heap;
+package main.java.com.exercise.ps.Programmers.heap;
 
 import java.util.*;
 

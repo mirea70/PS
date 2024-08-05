@@ -1,4 +1,4 @@
-package com.exercise.ps.leetcode.binary_tree;
+package main.java.com.exercise.ps.leetcode.binary_tree;
 
 public class SameTree {
 

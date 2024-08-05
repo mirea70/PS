@@ -1,4 +1,4 @@
-package com.exercise.ps.Baekjoon.implementation;
+package main.java.com.exercise.ps.Baekjoon.implementation;
 
 import java.util.*;
 

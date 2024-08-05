@@ -1,4 +1,4 @@
-package com.exercise.ps.Programmers.Dfs_Bfs;
+package main.java.com.exercise.ps.Programmers.Dfs_Bfs;
 
 import java.lang.reflect.Array;
 import java.util.*;
