@@ -1,4 +1,4 @@
-package com.exercise.ps.leetcode.array;
+package main.java.com.exercise.ps.leetcode.array;
 
 public class BestTimeStock2 {
     public int maxProfit(int[] prices) {

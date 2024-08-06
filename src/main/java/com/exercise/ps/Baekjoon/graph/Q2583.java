@@ -1,4 +1,4 @@
-package com.exercise.ps.Baekjoon.graph;
+package main.java.com.exercise.ps.Baekjoon.graph;
 
 import java.io.BufferedReader;
 import java.io.IOException;

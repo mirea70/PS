@@ -1,4 +1,4 @@
-package com.exercise.ps.leetcode.graph;
+package main.java.com.exercise.ps.leetcode.graph;
 
 public class NumberOfIslands {
     private char[][] map;

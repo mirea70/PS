@@ -1,4 +1,4 @@
-package com.exercise.ps.Programmers.Sort;
+package main.java.com.exercise.ps.Programmers.Sort;
 
 import java.util.Arrays;
 import java.util.Collections;

@@ -1,4 +1,4 @@
-package com.exercise.ps.Baekjoon.bfs;
+package main.java.com.exercise.ps.Baekjoon.bfs;
 
 import java.io.*;
 import java.util.*;

@@ -1,4 +1,4 @@
-package com.exercise.ps.leetcode.dp;
+package main.java.com.exercise.ps.leetcode.dp;
 
 public class HouseRobber {
     public int rob(int[] nums) {

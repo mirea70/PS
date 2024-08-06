@@ -1,4 +1,4 @@
-package com.exercise.ps.Programmers.impl;
+package main.java.com.exercise.ps.Programmers.impl;
 
 import java.util.HashMap;
 import java.util.HashSet;

@@ -1,4 +1,4 @@
-package com.exercise.ps.Baekjoon.sum;
+package main.java.com.exercise.ps.Baekjoon.sum;
 
 import java.io.BufferedReader;
 import java.io.IOException;

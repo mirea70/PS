@@ -1,4 +1,4 @@
-package com.exercise.ps.Programmers.Dfs_Bfs;
+package main.java.com.exercise.ps.Programmers.Dfs_Bfs;
 
 import java.util.LinkedList;
 import java.util.Queue;

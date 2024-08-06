@@ -1,4 +1,4 @@
-package com.exercise.ps.leetcode.matrix;
+package main.java.com.exercise.ps.leetcode.matrix;
 
 import java.util.ArrayList;
 import java.util.HashSet;

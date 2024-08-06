@@ -1,4 +1,4 @@
-package com.exercise.ps.Programmers;
+package main.java.com.exercise.ps.Programmers;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,4 +1,4 @@
-package com.exercise.ps.leetcode.backTrack;
+package main.java.com.exercise.ps.leetcode.backTrack;
 
 import java.util.ArrayList;
 import java.util.List;

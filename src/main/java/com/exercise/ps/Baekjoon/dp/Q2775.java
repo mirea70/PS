@@ -1,4 +1,4 @@
-package com.exercise.ps.Baekjoon.dp;
+package main.java.com.exercise.ps.Baekjoon.dp;
 
 import java.util.Scanner;
 

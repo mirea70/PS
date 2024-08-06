@@ -1,4 +1,4 @@
-package com.exercise.ps.Baekjoon.union;
+package main.java.com.exercise.ps.Baekjoon.union;
 
 import java.io.BufferedReader;
 import java.io.IOException;

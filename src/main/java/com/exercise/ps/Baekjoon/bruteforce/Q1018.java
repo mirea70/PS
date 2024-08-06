@@ -1,4 +1,4 @@
-package com.exercise.ps.Baekjoon.bruteforce;
+package main.java.com.exercise.ps.Baekjoon.bruteforce;
 
 import java.util.*;
 

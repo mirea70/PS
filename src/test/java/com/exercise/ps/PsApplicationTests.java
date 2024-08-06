@@ -1,4 +1,4 @@
-package com.exercise.ps;
+package main.java.com.exercise.ps;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

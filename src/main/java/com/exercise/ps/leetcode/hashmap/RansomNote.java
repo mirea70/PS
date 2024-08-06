@@ -1,4 +1,4 @@
-package com.exercise.ps.leetcode.hashmap;
+package main.java.com.exercise.ps.leetcode.hashmap;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package com.exercise.ps.leetcode;
+package main.java.com.exercise.ps.leetcode;
 
 public class RotateArray {
     public void rotate(int[] nums, int k) {
