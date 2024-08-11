@@ -1,4 +1,4 @@
-package com.exercise.ps.Baekjoon.im_pre;
+package main.java.com.exercise.ps.Baekjoon.im_pre;
 
 import java.io.BufferedReader;
 import java.io.IOException;
