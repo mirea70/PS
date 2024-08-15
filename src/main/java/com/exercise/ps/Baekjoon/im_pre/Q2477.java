@@ -10,100 +10,37 @@ public class Q2477 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
         int k = Integer.parseInt(br.readLine());
-        int[] x_arr = new int[6];
-        int[] y_arr = new int[6];
-        List<int[]> pairList = new ArrayList<>();
-        // 참외밭을 그려나가면서, x와 y 배열에 저장하고
-        // x를 키로하는 y값을 저장한다
-        // y를 키로하는 x값을 저장한다
-        int y = 0;
-        int x = 0;
-        pairList.add(new int[]{0,0});
+        // 0번 : 방향, 1번 : 길이
+        int[][] field = new int[6][2];
+        // 방향과, 길이를 저장해나가면서, 가로, 세로의 최대길이와 그 때의 인덱스를 구한다
+        int max_width = 0;
+        int max_width_idx = -1;
+        int max_height = 0;
+        int max_height_idx = -1;
+
         for(int i=0; i<6; i++) {
             st = new StringTokenizer(br.readLine());
             int dir = Integer.parseInt(st.nextToken());
             int val = Integer.parseInt(st.nextToken());
-            switch (dir) {
-                case 1: {
-                    x += val;
-                }
-                break;
-                case 2: {
-                    x -= val;
-                }
-                break;
-                case 3: {
-                    y += val;
-                }
-                break;
-                case 4: {
-                    y -= val;
-                }
-                break;
+            field[i][0] = dir;
+            field[i][1] = val;
+            if((dir == 1 || dir == 2) && val > max_width) {
+                max_width = val;
+                max_width_idx = i;
             }
-            x_arr[i] = x;
-            y_arr[i] = y;
-            pairList.add(new int[]{x,y});
-        }
-        // x,y 배열 정렬
-        Arrays.sort(x_arr);
-        Arrays.sort(y_arr);
-        // x의 가장 큰 값 - 가장 작은값 <- 큰 너비
-        int large_width = x_arr[5] - x_arr[0];
-        // y의 가장 큰 값 - 가장 작은값 <- 큰 높이
-        int large_height = y_arr[5] - y_arr[0];
-
-        // x와 y의 둘째값을 찾는다
-        int x_max = 0;
-        int x_sec = -1;
-        for(int i=5; i>=0; i--) {
-            if(Math.abs(x_arr[i]) > Math.abs(x_max)) {
-                x_max = Math.abs(x_arr[i]);
+            else if((dir == 3 || dir == 4) && val > max_height) {
+                max_height = val;
+                max_height_idx = i;
             }
         }
-
-        for(int i=4; i>=0; i--) {
-            if(Math.abs(x_arr[i]) != x_max && Math.abs(x_arr[i]) > Math.abs(x_sec)) {
-                x_sec = x_arr[i];
-            }
-        }
-        int y_max = 0;
-        int y_sec = -1;
-        for(int i=5; i>=0; i--) {
-            if(Math.abs(y_arr[i]) > Math.abs(y_max)) {
-                y_max = Math.abs(y_arr[i]);
-            }
-        }
-
-        for(int i=4; i>=0; i--) {
-            if(Math.abs(y_arr[i]) != y_max && Math.abs(y_arr[i]) > Math.abs(y_sec)) {
-                y_sec = y_arr[i];
-            }
-        }
-        // x의 최대값 또는 최소값을 key로하는 y값과 일치하는 x값과의 차이가 바로 <- 작은 너비
-        int width_standard = -1;
-        boolean w_flag = false;
-        boolean h_flag = false;
-        for(int i=0; i<pairList.size(); i++) {
-            int[] pair = pairList.get(i);
-            if(pair[0] == x_arr[5] && pair[1] == y_sec) {
-                w_flag = true;
-            }
-            if(pair[1] == y_arr[5] && pair[0] == x_sec) {
-                h_flag = true;
-            }
-        }
-        if(w_flag) width_standard = x_arr[5];
-        else width_standard = x_arr[0];
-        // y값도 마찬가지
-        int height_standard = -1;
-        if(h_flag) height_standard = y_arr[5];
-        else height_standard = y_arr[0];
-
-        int smallWidth = Math.abs(x_sec - width_standard);
-        int smallHeight = Math.abs(y_sec - height_standard);
-
+        // 큰 사각형의 면적 : 가로, 세로 최대 길이의 곱
+        int large_sum = max_width * max_height;
+        // 작은 사각형의 면적 구하기
+        // 세로가 가장 긴 변의 양쪽 변의 차이 = 작은 사각형의 가로 길이
+        int small_width = Math.abs(field[(max_height_idx + 1) % 6][1] - field[(max_height_idx + 5) % 6][1]);
+        // 가로가 가장 긴 변의 양쪽 변의 차이 = 작은 사각형의 세로 길이
+        int small_height = Math.abs(field[(max_width_idx + 1) % 6][1] - field[(max_width_idx + 5) % 6][1]);
         // 큰 면적 - 작은 면적 출력
-        System.out.print((large_height * large_width - smallHeight * smallWidth) * k);
+        System.out.print((large_sum - (small_width * small_height)) * k);
     }
 }
