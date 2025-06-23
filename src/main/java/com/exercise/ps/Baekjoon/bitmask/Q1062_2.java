@@ -1,4 +1,4 @@
-package com.exercise.ps.Baekjoon.bruteforce;
+package com.exercise.ps.Baekjoon.bitmask;
 
 import java.io.BufferedReader;
 import java.io.IOException;
