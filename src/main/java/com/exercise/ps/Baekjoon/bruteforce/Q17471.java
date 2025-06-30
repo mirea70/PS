@@ -39,7 +39,7 @@ public class Q17471 {
         }
         // 순회 끝
         // 차이 최소값 출력
-        System.out.print(min_dif);
+        System.out.print(min_dif == Integer.MAX_VALUE ? -1 : min_dif);
     }
 
     // 조합 구하기
@@ -47,27 +47,29 @@ public class Q17471 {
         // 조합 완성될 때마다, 해당 조합으로 구역 나누기 가능한지 체크
         if(depth == r) {
             Set<Integer> divSet1 = new HashSet<>();
+            int startIdx1 = -1;
+            int startIdx2 = -1;
 
             Set<Integer> divSet2 = new HashSet<>();
             for(int i=1; i< visit.length; i++) {
                 if(visit[i]) {
                     divSet1.add(i);
+                    startIdx1 = i;
                 }
                 else {
                     divSet2.add(i);
+                    startIdx2 = i;
                 }
             }
             // 구역 나누기 가능하다면, 구역별 인원 수 자료에서 두 조합의 각각 합을 구한 뒤, 차이 갱신
-            if(isValid(divSet1) && isValid(divSet2)) {
-                System.out.println("divSet1 = " + divSet1);
-                System.out.println("divSet2 = " + divSet2);
-
+            if(isValid(startIdx1, divSet1, new boolean[N+1])
+                    && (isValid(startIdx2, divSet2, new boolean[N+1]))) {
                 int sum1 = 0;
                 for(int div : divSet1) {
                     sum1 += div_people[div];
                 }
                 int sum2 = 0;
-                for(int div : divSet1) {
+                for(int div : divSet2) {
                     sum2 += div_people[div];
                 }
 
@@ -85,33 +87,21 @@ public class Q17471 {
         }
     }
 
-    private static boolean isValid(Set<Integer> divSet) {
-        for(int div : divSet) {
-            if(isValid(div, 1, divSet, new boolean[N+1])) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     // 구역 나누기 체크
-    private static boolean isValid(int index, int depth, Set<Integer> divSet, boolean[] visit) {
-        // Set 길이만큼 재귀했다면
-        if(depth == divSet.size()) {
-            // 연결되었다는 의미이므로 true 리턴
-            return true;
-        }
+    private static boolean isValid(int index, Set<Integer> divSet, boolean[] visit) {
         // 현재 index에 연결되어있으면서, 아직 방문하지 않은 구역 재귀
         visit[index] = true;
         for(int div : divSet) {
             if(link_info[index][div] && !visit[div]) {
-                if(isValid(div, depth+1, divSet, visit)) {
+                if(isValid(div, divSet, visit)) {
                     return true;
                 }
             }
-            visit[div] = false;
         }
-        // 끝까지 왔으면 오기전에 true 리턴 안되었으므로 false
-        return false;
+        int visit_cnt = 0;
+        for(boolean b : visit) {
+            if(b) visit_cnt++;
+        }
+        return visit_cnt == divSet.size();
     }
 }
