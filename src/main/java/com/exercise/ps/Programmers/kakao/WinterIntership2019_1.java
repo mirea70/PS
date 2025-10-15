@@ -3,79 +3,60 @@ package com.exercise.ps.Programmers.kakao;
 import java.util.*;
 
 public class WinterIntership2019_1 {
-    public int[] solution(String s) {
-        int[] answer = {};
-        boolean numFlag = false;
-        StringBuilder sb = new StringBuilder();
-        Set<Integer> set = null;
-        List<Set<Integer>> list = new ArrayList<>();
-        // s를 순회 1번부터 n-1번까지
-        for (int i = 1; i < s.length() - 1; i++) {
-            char c = s.charAt(i);
-            // {라면
-            if (c == '{') {
-                set = new HashSet<>();
-            }
-            // - 숫자라면
-            else if (c >= '0' && c <= '9') {
-                numFlag = true;
-                sb.append(c);
-            }
-            // , 라면
-            else if(c == ',') {
-                // numFlag가 true
-                if(numFlag) {
-                    // numflag = false
-                    numFlag = false;
-                    // sb에 있는 놈을 set에 담음
-                    set.add(Integer.parseInt(sb.toString()));
-                    // sb 초기화
-                    sb.setLength(0);
-                }
-            }
-            // - }를 만나면
-            else if (c == '}') {
-                // numFlag가 true
-                if(numFlag) {
-                    // numflag = false
-                    numFlag = false;
-                    // sb에 있는 놈을 set에 담음
-                    set.add(Integer.parseInt(sb.toString()));
-                    // sb 초기화
-                    sb.setLength(0);
-                }
-                // -- set을 list에 추가
-                list.add(set);
-            }
-        }
-        // s 순회 끝
-        for(Set<Integer> sets : list) {
-            System.out.println(sets.toString());
-        }
+    public static void main(String[] args) {
+        String data3 = "{{20,111},{111}}";
+        //   20,111 , 111
+        String data4= "{{123}}";
 
-        // chkSet 생성
-        Set<Integer> chkset = new HashSet<>();
-        // list를 set길이 오름차순 정렬
-        list.sort((o1, o2) -> o1.size() - o2.size());
-        // 리스트 길이만큼 answer 생성
-        int len = list.size();
-        answer = new int[len];
-        // 리스트 순회
-        for (int i = 0; i < len; i++) {
-            // - 해당 리스트의 set을 순회
-            for (int a : list.get(i)) {
-                // -- chkSet에 저장되어 있지 않은 수를 찾는다.
-                if (!chkset.contains(a)) {
-                    // -- 찾은 그 수를 chkSet에 넣고,
-                    chkset.add(a);
-                    // -- answer의 현재인덱스에도 담는다
-                    answer[i] = a;
+        System.out.println(Arrays.toString(solution(data4)));
+    }
+
+    public static int[] solution(String s) {
+        // 집합을 길이순으로 정렬하여 저장
+        Set<Integer>[] sets = new Set[500];
+
+        int idx = 1;
+        int len = s.length();
+        int setCount = 0;
+        while(idx < len-1) {
+            char val = s.charAt(idx);
+            if(val == '{') {
+                Set<Integer> set = new HashSet<>();
+
+                while(s.charAt(idx) != '}') {
+                    idx++;
+                    StringBuilder sb = new StringBuilder();
+                    while(s.charAt(idx) != ',' && s.charAt(idx) != '}') {
+                        val = s.charAt(idx);
+                        sb.append(val);
+                        idx++;
+                    }
+                    set.add(Integer.parseInt(sb.toString()));
+                }
+
+                sets[set.size()-1] = set;
+                setCount++;
+            }
+
+            idx++;
+        }
+//        System.out.println(setCount);
+//        System.out.println(sets[0].toString());
+
+        // 0번부터 방문 Set 채워나간다. 이 때, 아직 방문하지 않은 수가 현재 인덱스 수
+        int[] ans = new int[setCount];
+        Set<Integer> visit = new HashSet<>();
+        for(int i=0; i<setCount; i++) {
+            Set<Integer> set = sets[i];
+            for(int val : set) {
+                if(!visit.contains(val)) {
+                    visit.add(val);
+                    ans[i] = val;
                     break;
                 }
             }
-            // - set 순회 끝
         }
-        // 리스트 순회 끝
-        return answer;
+
+        return ans;
     }
 }
